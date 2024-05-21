@@ -32,18 +32,3 @@ module "vpc" {
     "${var.env}-subnet-01" = []
   }
 }
-
-module "vpc2" {
-  source  = "terraform-google-modules/network/google"
-  version = "3.3.0"
-
-  project_id   = "${var.project}"
-  network_name = "${var.env}-ken"
-  subnets = [
-    {
-      subnet_name   = "${var.env}-subnet-ken"
-      subnet_ip     = "10.${var.env == "dev" ? 10 : 20}.10.0/16"
-      subnet_region = "us-west2"
-    },
-  ]
-}
