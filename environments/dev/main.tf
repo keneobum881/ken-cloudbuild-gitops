@@ -43,12 +43,4 @@ module "vpc2" {
   source  = "../../modules/vpc"
   project = "${var.project}"
   env     = "${local.env}"
-  network_name="ken"
-  subnets = [
-  {
-    subnet_name   = "ken-subnet-01"
-    subnet_ip     = "10.${var.env == "dev" ? 10 : 20}.10.0/16"
-    subnet_region = "us-west1"
-  },
-]
 }
