@@ -17,25 +17,27 @@ locals {
   network = "${element(split("-", var.subnet), 0)}"
 }
 
-resource "google_container_cluster" "ken" {
+resource "google_container_cluster" "learning" {
   name     = "ken-gke-cluster"
   location = "us-west1"
+  network = "dev"
+  subnetwork = "dev-subnet-01"
   remove_default_node_pool = true
   initial_node_count       = 1
 }
 
-resource "google_container_node_pool" "ken_preemptible_nodes" {
-  name       = "ken-node-pool"
-  location   = "us-west1"
-  cluster    = google_container_cluster.ken.name
-  node_count = 1
+# resource "google_container_node_pool" "learning_preemptible_nodes" {
+#   name       = "ken-node-pool"
+#   location   = "us-west1"
+#   cluster    = google_container_cluster.learning.name
+#   node_count = 1
 
-  node_config {
-    preemptible  = true
-    machine_type = "e2-micro"
-    service_account = "id-420039265868-ken@aksgkelearning.iam.gserviceaccount.com"
-    oauth_scopes    = [
-      "https://www.googleapis.com/auth/cloud-platform"
-    ]
-  }
-}
+#   node_config {
+#     preemptible  = true
+#     machine_type = "e2-micro"
+#     service_account = "id-420039265868-ken@aksgkelearning.iam.gserviceaccount.com"
+#     oauth_scopes    = [
+#       "https://www.googleapis.com/auth/cloud-platform"
+#     ]
+#   }
+# }
