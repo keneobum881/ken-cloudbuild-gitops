@@ -15,7 +15,7 @@
 
 locals {
   network = "${element(split("-", var.subnet), 0)}"
-  subnetwork= "${var.subnet[0]}"
+  subnetwork= "${var.subnet}"
 }
 
 resource "google_container_cluster" "learning" {
