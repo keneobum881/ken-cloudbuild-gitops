@@ -20,8 +20,8 @@ locals {
 resource "google_container_cluster" "learning" {
   name     = "ken-gke-cluster"
   location = "us-west1"
-  network = "dev"
-  subnetwork="dev-subnet-01"
+  network = google_compute_network.dev.id
+  subnetwork= google_compute_subnetwork.dev-subnet-01.id
   remove_default_node_pool = true
   initial_node_count       = 1
 }
