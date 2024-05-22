@@ -21,6 +21,7 @@ resource "google_container_cluster" "learning" {
   name     = "ken-gke-cluster"
   location = "us-west1"
   network = "dev"
+  subnetwork="dev-subnet-01"
   remove_default_node_pool = true
   initial_node_count       = 1
 }
