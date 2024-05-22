@@ -17,6 +17,6 @@ output "network" {
   value = "${module.vpc.network}"
 }
 
-output "subnet" {
-  value = "${module.vpc.subnet}"
-}
+# output "subnet" {
+#   value = "${module.vpc.subnet}"
+# }
