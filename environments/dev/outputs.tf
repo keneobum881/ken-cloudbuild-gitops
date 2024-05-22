@@ -13,10 +13,10 @@
 # limitations under the License.
 
 
-output "network" {
-  value = "${module.vpc.network}"
-}
+# output "network" {
+#   value = "${module.vpc.network}"
+# }
 
-output "subnet" {
-  value = "${module.vpc.subnet}"
-}
+# output "subnet" {
+#   value = "${module.vpc.subnet}"
+# }

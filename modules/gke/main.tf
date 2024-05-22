@@ -15,13 +15,14 @@
 
 locals {
   network = "${element(split("-", var.subnet), 0)}"
+  subnetwork= "${var.subnet[0]}"
 }
 
 resource "google_container_cluster" "learning" {
   name     = "ken-gke-cluster"
   location = "us-west1"
-  network = "dev"
-  subnetwork="dev-subnet-01"
+  network = "${local.network}"
+  subnetwork="${local.subnetwork}"
   remove_default_node_pool = true
   initial_node_count       = 1
 }
