@@ -91,9 +91,9 @@ resource "kubernetes_deployment_v1" "learning" {
 resource "kubernetes_service_v1" "learning_s" {
   metadata {
     name = "example-hello-app-loadbalancer"
-    annotations = {
-      "networking.gke.io/load-balancer-type" = "Internal" # Remove to create an external loadbalancer
-    }
+    # annotations = {
+    #   "networking.gke.io/load-balancer-type" = "Internal" # Remove to create an external loadbalancer
+    # }
   }
 
   spec {
