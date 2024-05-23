@@ -1,15 +1,15 @@
-# data "google_client_config" "default" {}
+data "google_client_config" "default" {}
 
-# provider "kubernetes" {
-#   host                   = "https://${google_container_cluster.learning.endpoint}"
-#   token                  = data.google_client_config.default.access_token
-#   cluster_ca_certificate = base64decode(google_container_cluster.learning.master_auth[0].cluster_ca_certificate)
+provider "kubernetes" {
+  host                   = "https://${google_container_cluster.learning.endpoint}"
+  token                  = data.google_client_config.default.access_token
+  cluster_ca_certificate = base64decode(google_container_cluster.learning.master_auth[0].cluster_ca_certificate)
 
-#   ignore_annotations = [
-#     "^autopilot\\.gke\\.io\\/.*",
-#     "^cloud\\.google\\.com\\/.*"
-#   ]
-# }
+  ignore_annotations = [
+    "^autopilot\\.gke\\.io\\/.*",
+    "^cloud\\.google\\.com\\/.*"
+  ]
+}
 
 # resource "kubernetes_deployment_v1" "learning" {
 #   metadata {
