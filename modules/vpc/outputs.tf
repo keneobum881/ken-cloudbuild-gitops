@@ -14,9 +14,9 @@
 
 
 output "network" {
-  value = "${module.vpc.network_name}"
+  value = google_compute_network.ken_network.name
 }
 
-output "subnet" {
-  value = "${element(module.vpc.subnets_names, 0)}"
+output "subnets" {
+  value = [for subnet in google_compute_subnetwork.ken_subnetwork: subnet.name]
 }
