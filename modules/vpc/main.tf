@@ -55,7 +55,7 @@ resource "google_compute_subnetwork" "ken_subnetwork" {
   project       = var.project
 
   dynamic "secondary_ip_range" {
-    for_each = var.secondary_ip_ranges[count.index]
+    for_each = var.secondary_ip_ranges["ken-subnet-${count.index + 1}"]
     content {
       range_name    = "secondary-range-${secondary_ip_range.key}"
       ip_cidr_range = "${secondary_ip_range.value}"
