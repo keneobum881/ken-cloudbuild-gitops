@@ -30,5 +30,6 @@ module "vpc" {
 module "gke_cluster" {
   source  = "../../modules/gke"
   project = "${var.project}"
-  subnet  = module.vpc.subnets[1]
+  subnet_name = "${var.env}-subnet-02"
+  subnet_region = "us-central1"
 }
