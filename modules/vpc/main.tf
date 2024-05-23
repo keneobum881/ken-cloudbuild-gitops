@@ -35,6 +35,6 @@ resource "google_compute_subnetwork" "ken_subnetwork" {
     }
   }
   lifecycle {
-  ignore_changes = [ip_cidr_range, name, network]
+    ignore_changes = [ip_cidr_range, name, network]
 }
 }
