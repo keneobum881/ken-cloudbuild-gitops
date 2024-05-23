@@ -15,7 +15,7 @@
 
 locals {
   network = "${var.env}"
-  subnet  = "${var.subnet_name[1]}"
+  subnet  = "${var.subnet_names[1]}"
 }
 
 resource "google_container_cluster" "learning" {

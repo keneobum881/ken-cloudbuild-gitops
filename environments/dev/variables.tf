@@ -14,8 +14,3 @@
 
 
 variable "project" {}
-
-variable "subnet_names" {
-  description = "A list of names for the subnetworks."
-  default     = ["ken-subnet-1", "ken-subnet-2", "ken-subnet-3", "ken-subnet-4"]
-}
