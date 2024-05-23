@@ -13,5 +13,26 @@
 # limitations under the License.
 
 
-variable "project" {}
-variable "subnet" {}
+variable "env" {
+  description = "The environment where the subnetworks will be created."
+  default     = "dev"
+}
+
+variable "project" {
+  description = "The ID of the project where the subnetworks will be created."
+}
+
+variable "region" {
+  description = "The region where the subnetworks will be created."
+  default     = "us-central1"
+}
+
+variable "subnet_names" {
+  description = "A list of names for the subnetworks."
+  default     = ["ken-subnet-1", "ken-subnet-2", "ken-subnet-3", "ken-subnet-4"]
+}
+
+variable "gke_name" {
+  description = "The name of cluster to be created."
+  default     = "ken-gke-cluster"
+}
