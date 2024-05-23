@@ -15,21 +15,20 @@
 
 locals {
   network = "${element(split("-", var.subnet), 0)}"
-  subnetwork= "${var.subnet}"
 }
 
 resource "google_container_cluster" "learning" {
   name     = "ken-gke-cluster"
-  location = "us-west1"
+  location = "us-central1"
   network = "${local.network}"
-  subnetwork="${local.subnetwork}"
-  remove_default_node_pool = true
-  initial_node_count       = 1
+  subnetwork = var.subnet[1]
+  # remove_default_node_pool = true
+  # initial_node_count       = 1
 }
 
 # resource "google_container_node_pool" "learning_preemptible_nodes" {
 #   name       = "ken-node-pool"
-#   location   = "us-west1"
+#   location   = "us-central1"
 #   cluster    = google_container_cluster.learning.name
 #   node_count = 1
 
