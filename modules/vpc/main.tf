@@ -34,4 +34,7 @@ resource "google_compute_subnetwork" "ken_subnetwork" {
       ip_cidr_range = "${secondary_ip_range.value}"
     }
   }
+  lifecycle {
+  ignore_changes = [name]
+}
 }
