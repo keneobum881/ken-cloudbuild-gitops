@@ -21,10 +21,6 @@ provider "google" {
   project = "${var.project}"
 }
 
-provider "kubernetes" {
-  config_context_cluster = module.gke_cluster.cluster.name
-}
-
 module "vpc" {
   source  = "../../modules/vpc"
   project = "${var.project}"

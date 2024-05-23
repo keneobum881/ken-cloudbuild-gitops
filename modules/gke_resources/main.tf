@@ -1,3 +1,7 @@
+provider "kubernetes" {
+  config_context_cluster = "ken-gke-cluster"
+}
+
 resource "kubernetes_deployment" "nginx" {
   metadata {
     name = "nginx"
