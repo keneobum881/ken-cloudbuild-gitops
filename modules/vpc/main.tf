@@ -17,9 +17,6 @@ resource "google_compute_network" "ken_network" {
   name                    = "${var.env}"
   auto_create_subnetworks = false
   mtu                     = 1460
-  lifecycle {
-  ignore_changes = [name]
-}
 }
 
 resource "google_compute_subnetwork" "ken_subnetwork" {
@@ -37,4 +34,7 @@ resource "google_compute_subnetwork" "ken_subnetwork" {
       ip_cidr_range = "${secondary_ip_range.value}"
     }
   }
+  lifecycle {
+  ignore_changes = [ip_cidr_range]
+}
 }
