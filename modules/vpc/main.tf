@@ -58,4 +58,11 @@ resource "google_compute_subnetwork" "ken_subnetwork" {
   range_name    = "${var.subnet_names[count.index]}-sec-range"
   ip_cidr_range = var.secondary_ip_ranges[lookup(var.subnet_names[count.index], var.secondary_ip_ranges)]
 }
+  dynamic "secondary_ip_range" {
+    for_each = var.secondary_ip_ranges
+    content {
+      range_name    = "secondary-range-${secondary_ip_range.key}"
+      ip_cidr_range = secondary_ip_range.value
+    }
+  }
 }
