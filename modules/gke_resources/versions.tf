@@ -13,29 +13,6 @@
 # limitations under the License.
 
 
-locals {
-  env = "dev"
-}
-
-provider "google" {
-  project = "${var.project}"
-}
-
-provider "kubernetes" {
-  config_context_cluster = module.gke_cluster.cluster_name
-}
-
-module "vpc" {
-  source  = "../../modules/vpc"
-  project = "${var.project}"
-  env     = "${local.env}"
-}
-
-module "gke_cluster" {
-  source  = "../../modules/gke"
-  project = "${var.project}"
-  subnet= "${local.env}-subnet-02"
-}
-module "gke_resource" {
-  source  = "../../modules/gke_resources"
+terraform {
+  required_version = "~> 1.0.0"
 }
