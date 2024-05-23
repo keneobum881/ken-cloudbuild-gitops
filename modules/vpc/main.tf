@@ -38,3 +38,17 @@ module "vpc" {
     "${var.env}-subnet-02" = []
   }
 }
+
+# resource "google_compute_network" "ken_network" {
+#   project                 = "${var.project}"
+#   name                    = "${var.env}"
+#   auto_create_subnetworks = false
+#   mtu                     = 1460
+# }
+
+# resource "google_compute_subnetwork" "ken_subnetwork" {
+#   name          = "${var.env}-subnet-01"
+#   ip_cidr_range = "10.${var.env == "dev" ? 10 : 20}.10.0/24"
+#   region        = "us-central1"
+#   network       = google_compute_network.ken_network.id
+# }
