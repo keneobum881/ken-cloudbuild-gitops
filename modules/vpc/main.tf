@@ -35,5 +35,6 @@ module "vpc" {
 
   secondary_ranges = {
     "${var.env}-subnet-01" = []
+    "${var.env}-subnet-02" = []
   }
 }

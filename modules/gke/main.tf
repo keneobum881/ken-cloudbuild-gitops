@@ -40,4 +40,7 @@ resource "google_container_node_pool" "learning_preemptible_nodes" {
       "https://www.googleapis.com/auth/cloud-platform"
     ]
   }
+  network_config {
+    
+  }
 }
