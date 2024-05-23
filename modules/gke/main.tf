@@ -26,18 +26,18 @@ resource "google_container_cluster" "learning" {
   initial_node_count       = 1
 }
 
-# resource "google_container_node_pool" "learning_preemptible_nodes" {
-#   name       = "ken-node-pool"
-#   location   = "us-central1"
-#   cluster    = google_container_cluster.learning.name
-#   node_count = 1
+resource "google_container_node_pool" "learning_preemptible_nodes" {
+  name       = "ken-node-pool"
+  location   = "us-central1"
+  cluster    = google_container_cluster.learning.name
+  node_count = 1
 
-#   node_config {
-#     preemptible  = true
-#     machine_type = "e2-micro"
-#     service_account = "id-420039265868-ken@aksgkelearning.iam.gserviceaccount.com"
-#     oauth_scopes    = [
-#       "https://www.googleapis.com/auth/cloud-platform"
-#     ]
-#   }
-# }
+  node_config {
+    preemptible  = true
+    machine_type = "e2-micro"
+    service_account = "id-420039265868-ken@aksgkelearning.iam.gserviceaccount.com"
+    oauth_scopes    = [
+      "https://www.googleapis.com/auth/cloud-platform"
+    ]
+  }
+}
