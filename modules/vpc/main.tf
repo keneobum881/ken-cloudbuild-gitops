@@ -35,6 +35,6 @@ resource "google_compute_subnetwork" "ken_subnetwork" {
     }
   }
   lifecycle {
-  ignore_changes = [name]
+  ignore_changes = [tags]
 }
 }
