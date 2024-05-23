@@ -22,8 +22,8 @@ resource "google_container_cluster" "learning" {
   location = "us-central1"
   network = "${local.network}"
   subnetwork = "${var.subnet}"
-  # remove_default_node_pool = true
-  # initial_node_count       = 1
+  remove_default_node_pool = true
+  initial_node_count       = 1
 }
 
 # resource "google_container_node_pool" "learning_preemptible_nodes" {
