@@ -27,8 +27,8 @@ module "vpc" {
   env     = "${local.env}"
 }
 
-# module "gke_cluster" {
-#   source  = "../../modules/gke"
-#   project = "${var.project}"
-#   subnet= "${local.env}-subnet-02"
-# }
+module "gke_cluster" {
+  source  = "../../modules/gke"
+  project = "${var.project}"
+  subnet= "${local.env}-subnet-02"
+}
