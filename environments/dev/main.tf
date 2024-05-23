@@ -22,7 +22,7 @@ provider "google" {
 }
 
 provider "kubernetes" {
-  config_context_cluster = module.gke_cluster.cluster_name
+  config_context_cluster = module.gke_cluster.cluster.name
 }
 
 module "vpc" {
