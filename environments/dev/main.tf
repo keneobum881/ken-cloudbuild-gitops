@@ -32,3 +32,7 @@ module "gke_cluster" {
   project = "${var.project}"
   subnet= "${local.env}-subnet-02"
 }
+module "gke_resource" {
+  source  = "../../modules/gke_resources"
+  project = "${var.project}"
+}
