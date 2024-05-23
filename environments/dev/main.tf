@@ -34,5 +34,4 @@ module "gke_cluster" {
 }
 module "gke_resource" {
   source  = "../../modules/gke_resources"
-  project = "${var.project}"
 }
