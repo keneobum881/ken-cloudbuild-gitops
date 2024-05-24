@@ -30,5 +30,4 @@ module "vpc" {
 module "gke_cluster" {
   source  = "../../modules/gke"
   project = "${var.project}"
-  # subnet= "${var.subnet[1]}"
 }
