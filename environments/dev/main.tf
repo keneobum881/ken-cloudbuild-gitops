@@ -27,7 +27,7 @@ module "vpc" {
   env     = "${local.env}"
 }
 
-# module "gke_cluster" {
-#   source  = "../../modules/gke"
-#   project = "${var.project}"
-# }
+module "gke_cluster" {
+  source  = "../../modules/gke"
+  project = "${var.project}"
+}
