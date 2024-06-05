@@ -7,7 +7,7 @@ resource "google_container_cluster" "learning" {
   name     = "${var.gke_name}"
   location = "${var.region}"
   network = "${local.network}"
-  subnetwork = "${local.subnet}"
+  # subnetwork = "${local.subnet}"
   remove_default_node_pool = true
   initial_node_count       = 1
   deletion_protection = false
