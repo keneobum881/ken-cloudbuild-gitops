@@ -13,18 +13,18 @@ resource "google_container_cluster" "learning" {
   deletion_protection = false
 }
 
-# resource "google_container_node_pool" "learning_preemptible_nodes" {
-#   name       = "${var.gke_name}-node-pool"
-#   location   = "${var.region}"
-#   cluster    = google_container_cluster.learning.name
-#   node_count = 1
+resource "google_container_node_pool" "learning_preemptible_nodes" {
+  name       = "${var.gke_name}-node-pool"
+  location   = "${var.region}"
+  cluster    = google_container_cluster.learning.name
+  node_count = 1
 
-#   node_config {
-#     preemptible  = true
-#     machine_type = "e2-micro"
-#     service_account = "id-420039265868-ken@aksgkelearning.iam.gserviceaccount.com"
-#     oauth_scopes    = [
-#       "https://www.googleapis.com/auth/cloud-platform"
-#     ]
-#   }
-# }
+  node_config {
+    preemptible  = true
+    machine_type = "e2-micro"
+    service_account = "id-420039265868-ken@aksgkelearning.iam.gserviceaccount.com"
+    oauth_scopes    = [
+      "https://www.googleapis.com/auth/cloud-platform"
+    ]
+  }
+}
