@@ -17,6 +17,8 @@ resource "kubernetes_deployment_v1" "learning" {
   }
 
   spec {
+    replicas = 3
+    
     selector {
       match_labels = {
         app = "hello-app"
