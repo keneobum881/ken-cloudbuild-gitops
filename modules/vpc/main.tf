@@ -13,13 +13,13 @@ resource "google_compute_subnetwork" "ken_subnetwork" {
   network       = google_compute_network.ken_network.id
   project       = var.project
 
-  dynamic "secondary_ip_range" {
-    for_each = var.secondary_ip_ranges["ken-subnet-${count.index + 1}"]
-    content {
-      range_name    = "secondary-range-${secondary_ip_range.key}"
-      ip_cidr_range = "${secondary_ip_range.value}"
-    }
-  }
+  # dynamic "secondary_ip_range" {
+  #   for_each = var.secondary_ip_ranges["ken-subnet-${count.index + 1}"]
+  #   content {
+  #     range_name    = "secondary-range-${secondary_ip_range.key}"
+  #     ip_cidr_range = "${secondary_ip_range.value}"
+  #   }
+  # }
   lifecycle {
     ignore_changes = [name, ip_cidr_range]
 }
