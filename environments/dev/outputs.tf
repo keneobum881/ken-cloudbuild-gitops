@@ -13,6 +13,6 @@
 # limitations under the License.
 
 
-# output "network" {
-#   value = "${module.vpc.network}"
-# }
+output "network" {
+  value = "${module.vpc.network}"
+}
