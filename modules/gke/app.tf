@@ -11,112 +11,112 @@ provider "kubernetes" {
   ]
 }
 
-resource "kubernetes_deployment_v1" "learning" {
-  metadata {
-    name = "example-hello-app-deployment"
-  }
+# resource "kubernetes_deployment_v1" "learning" {
+#   metadata {
+#     name = "example-hello-app-deployment"
+#   }
 
-  spec {
-    replicas = 3
-    
-    selector {
-      match_labels = {
-        app = "hello-app"
-      }
-    }
+#   spec {
+#     replicas = 3
 
-    template {
-      metadata {
-        labels = {
-          app = "hello-app"
-        }
-      }
+#     selector {
+#       match_labels = {
+#         app = "hello-app"
+#       }
+#     }
 
-      spec {
-        container {
-          image = "us-docker.pkg.dev/google-samples/containers/gke/hello-app:2.0"
-          name  = "hello-app-container"
+#     template {
+#       metadata {
+#         labels = {
+#           app = "hello-app"
+#         }
+#       }
 
-          port {
-            container_port = 8080
-            name           = "hello-app-svc"
-          }
+#       spec {
+#         container {
+#           image = "us-docker.pkg.dev/google-samples/containers/gke/hello-app:2.0"
+#           name  = "hello-app-container"
 
-          security_context {
-            allow_privilege_escalation = false
-            privileged                 = false
-            read_only_root_filesystem  = false
+#           port {
+#             container_port = 8080
+#             name           = "hello-app-svc"
+#           }
 
-            capabilities {
-              add  = []
-              drop = ["NET_RAW"]
-            }
-          }
+#           security_context {
+#             allow_privilege_escalation = false
+#             privileged                 = false
+#             read_only_root_filesystem  = false
 
-          liveness_probe {
-            http_get {
-              path = "/"
-              port = "hello-app-svc"
+#             capabilities {
+#               add  = []
+#               drop = ["NET_RAW"]
+#             }
+#           }
 
-              http_header {
-                name  = "X-Custom-Header"
-                value = "Awesome"
-              }
-            }
+#           liveness_probe {
+#             http_get {
+#               path = "/"
+#               port = "hello-app-svc"
 
-            initial_delay_seconds = 3
-            period_seconds        = 3
-          }
-        }
+#               http_header {
+#                 name  = "X-Custom-Header"
+#                 value = "Awesome"
+#               }
+#             }
 
-        security_context {
-          run_as_non_root = true
+#             initial_delay_seconds = 3
+#             period_seconds        = 3
+#           }
+#         }
 
-          seccomp_profile {
-            type = "RuntimeDefault"
-          }
-        }
+#         security_context {
+#           run_as_non_root = true
 
-        # Toleration is currently required to prevent perpetual diff:
-        # https://github.com/hashicorp/terraform-provider-kubernetes/pull/2380
-        toleration {
-          effect   = "NoSchedule"
-          key      = "kubernetes.io/arch"
-          operator = "Equal"
-          value    = "amd64"
-        }
-      }
-    }
-  }
-}
+#           seccomp_profile {
+#             type = "RuntimeDefault"
+#           }
+#         }
 
-resource "kubernetes_service_v1" "learning_s" {
-  metadata {
-    name = "example-hello-app-loadbalancer"
-    # annotations = {
-    #   "networking.gke.io/load-balancer-type" = "Internal" # Remove to create an external loadbalancer
-    # }
-  }
+#         # Toleration is currently required to prevent perpetual diff:
+#         # https://github.com/hashicorp/terraform-provider-kubernetes/pull/2380
+#         toleration {
+#           effect   = "NoSchedule"
+#           key      = "kubernetes.io/arch"
+#           operator = "Equal"
+#           value    = "amd64"
+#         }
+#       }
+#     }
+#   }
+# }
 
-  spec {
-    selector = {
-      app = kubernetes_deployment_v1.learning.spec[0].selector[0].match_labels.app
-    }
+# resource "kubernetes_service_v1" "learning_s" {
+#   metadata {
+#     name = "example-hello-app-loadbalancer"
+#     # annotations = {
+#     #   "networking.gke.io/load-balancer-type" = "Internal" # Remove to create an external loadbalancer
+#     # }
+#   }
 
-    port {
-      port        = 80
-      target_port = kubernetes_deployment_v1.learning.spec[0].template[0].spec[0].container[0].port[0].name
-    }
+#   spec {
+#     selector = {
+#       app = kubernetes_deployment_v1.learning.spec[0].selector[0].match_labels.app
+#     }
 
-    type = "LoadBalancer"
-  }
+#     port {
+#       port        = 80
+#       target_port = kubernetes_deployment_v1.learning.spec[0].template[0].spec[0].container[0].port[0].name
+#     }
 
-  depends_on = [time_sleep.wait_service_cleanup]
-}
+#     type = "LoadBalancer"
+#   }
 
-# Provide time for Service cleanup
-resource "time_sleep" "wait_service_cleanup" {
-  depends_on = [google_container_cluster.learning]
+#   depends_on = [time_sleep.wait_service_cleanup]
+# }
 
-  destroy_duration = "180s"
-}
+# # Provide time for Service cleanup
+# resource "time_sleep" "wait_service_cleanup" {
+#   depends_on = [google_container_cluster.learning]
+
+#   destroy_duration = "180s"
+# }
