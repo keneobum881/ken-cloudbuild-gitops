@@ -17,7 +17,7 @@ resource "kubernetes_deployment_v1" "learning" {
   }
 
   spec {
-    replicas = 3
+    replicas = 10
 
     selector {
       match_labels = {
